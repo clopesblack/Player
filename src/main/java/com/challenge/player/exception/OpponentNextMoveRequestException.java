@@ -9,6 +9,7 @@ public class OpponentNextMoveRequestException extends RuntimeException {
     public OpponentNextMoveRequestException(final Match match) {
         super();
         log.info("matchId={}, lastMove={}, msg={}",
-                match.getId(), match.getMove().getValue(), "The match was unable to continue due to failing to get the next move from the opponent.");
+                match.getId(), match.getMove().getValue(),
+                "The match was unable to continue due to failing to get the next move from the opponent.");
     }
 }
