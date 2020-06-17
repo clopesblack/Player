@@ -8,4 +8,9 @@ public class StartMatchRequest {
 
     private Player opponent;
     private Integer value;
+
+    public StartMatchRequest(Player opponent, Integer value) {
+        this.opponent = opponent;
+        this.value = value;
+    }
 }

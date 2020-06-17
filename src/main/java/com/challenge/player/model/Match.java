@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 import org.slf4j.MDC;
 
 import static java.util.UUID.randomUUID;
@@ -12,11 +13,19 @@ import static java.util.UUID.randomUUID;
 @JsonDeserialize(builder = Match.MatchBuilder.class)
 public class Match {
 
+    @NonNull
     private final String id;
+
+    @NonNull
     private final Move move;
+
+    @NonNull
     private final Player challenger;
+
+    @NonNull
     private final Player opponent;
-    private final boolean finish;
+
+    private final boolean gameEnded;
     private final Player winner;
 
     @Builder(builderClassName = "MatchBuilder", toBuilder = true)
@@ -25,8 +34,8 @@ public class Match {
         this.id = createIdIfNotExists(id);
         this.opponent = opponent;
         this.challenger = challenger;
-        this.finish = move.isFinished();
-        this.winner = winner;
+        this.gameEnded = move.isEndGameMove();
+        this.winner = initializeWinner(move, winner);
         MDC.put("matchId", this.id);
     }
 
@@ -45,7 +54,16 @@ public class Match {
         return id;
     }
 
+    private Player initializeWinner(final Move move, final Player winner) {
+        if (move.isEndGameMove()) {
+            return move.getOwner();
+        }
+        return winner;
+    }
+
     @JsonPOJOBuilder(withPrefix = "")
     public static class MatchBuilder {
+
+
     }
 }

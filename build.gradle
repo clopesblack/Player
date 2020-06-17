@@ -25,6 +25,8 @@ dependencies {
 
 	testImplementation 'org.projectlombok:lombok:1.18.12'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+	testImplementation "com.github.tomakehurst:wiremock-jre8:2.26.3"
 }
 
 test {

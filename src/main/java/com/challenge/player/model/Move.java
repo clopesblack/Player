@@ -19,6 +19,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class Move {
 
     private final Integer value;
+    private final Player owner;
 
     public Move nextMove() {
         if (isValueDivisibleByThree(0)) {
@@ -30,7 +31,7 @@ public class Move {
         return getNewMoveDividingByThree(-1);
     }
 
-    public boolean isFinished() {
+    public boolean isEndGameMove() {
         return this.value.equals(1);
     }
 
@@ -38,6 +39,7 @@ public class Move {
         log.info("originalValue={}, addition={}, msg={}", this.value, addition, "Operation being applied");
         final Move move = Move.builder()
                 .value((this.value + addition) / 3)
+                .owner(this.owner)
                 .build();
         log.info("value={}, msg={}", move.value, "A new move was made");
         return move;
@@ -58,8 +60,7 @@ public class Move {
             if (null == this.value) {
                 this.value = getRandomValue();
             }
-            return new Move(this.value);
+            return new Move(this.value, this.owner);
         }
     }
 }
-
