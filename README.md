@@ -18,7 +18,7 @@
 
 ## Consuming APIs
 
-If you prefer you can try APIs importing the following Postman collection by here:
+You can try API importing the following Postman collection by here:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/ef3a13cc0fb2622f2748)
 
