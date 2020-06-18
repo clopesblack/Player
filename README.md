@@ -29,7 +29,9 @@ If you prefer you can try APIs importing the following Postman collection by her
 - The match will continue without making the user wait for the response, so the "match" its asynchronous.
 - The idea it is to follow the match on the console. There will have the ID of the players, the match information, and the values from the moves made by the players. 
 - And once hits value 1, will display the winner on the console of the Player that initiated the match.
-- It is possible to play more than one match, but can not pass the limit defined in the ExecutorService.
+- It is possible to play more than one match, but cannot pass the limit defined in the ExecutorService.
 
-See an example of how the match is displayed on the console:
+See an example of how the match it is displayed on the console:
+
+![alt text](player-match-console.png)
 
