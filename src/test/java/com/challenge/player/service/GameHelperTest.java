@@ -3,7 +3,7 @@ package com.challenge.player.service;
 import com.challenge.player.model.Match;
 import com.challenge.player.model.Move;
 import com.challenge.player.model.Player;
-import com.challenge.player.service.client.MatchClient;
+import com.challenge.player.service.client.OpponentClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,6 @@ import static org.mockito.Mockito.when;
 public class GameHelperTest {
 
     private Player selfPlayer;
-    private MatchClient client;
     private GameHelper gameHelper;
 
     @Mock
@@ -28,7 +27,7 @@ public class GameHelperTest {
     @BeforeEach
     public void beforeEach() {
         selfPlayer = Player.builder().address("localhost:8081").build();
-        gameHelper = new GameHelper(selfPlayer, new MatchClient(restTemplate));
+        gameHelper = new GameHelper(selfPlayer, new OpponentClient(restTemplate));
     }
 
     @Test
@@ -38,7 +37,7 @@ public class GameHelperTest {
         when(restTemplate.postForObject(anyString(), any(), eq(Match.class)))
                 .thenReturn(buildMatch(getMove(match.getMove().getValue(), match.getOpponent()).nextMove()));
 
-        Match resultMatch = gameHelper.gameLoop(match);
+        final Match resultMatch = gameHelper.gameLoop(match);
         Assertions.assertEquals(1, resultMatch.getMove().getValue());
     }
 

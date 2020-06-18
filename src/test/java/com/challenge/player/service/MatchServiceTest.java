@@ -5,7 +5,6 @@ import com.challenge.player.exception.OpponentNotAvailableToPlayException;
 import com.challenge.player.model.Match;
 import com.challenge.player.model.Move;
 import com.challenge.player.model.Player;
-import com.challenge.player.service.client.MatchClient;
 import com.challenge.player.service.client.OpponentClient;
 import com.challenge.player.service.client.resource.HealthResponse;
 import org.junit.jupiter.api.Assertions;
@@ -31,9 +30,9 @@ public class MatchServiceTest {
 
     @BeforeEach
     public void beforeEach() {
-        MatchClient client = new MatchClient(restTemplate);
+        final OpponentClient opponentClient = new OpponentClient(restTemplate);
         selfPlayer = Player.builder().address("localhost:8081").build();
-        service = new MatchService(new GameHelper(selfPlayer, client), new OpponentClient(restTemplate));
+        service = new MatchService(new GameHelper(selfPlayer, opponentClient), opponentClient);
     }
 
     @Test

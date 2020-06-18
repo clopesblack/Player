@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static java.util.UUID.randomUUID;
@@ -26,6 +25,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(
         webEnvironment = MOCK,
@@ -85,7 +85,7 @@ public class MatchControllerIntegrationTest {
 
     @Test
     public void start_WithOpponentAvailable_ShouldReturnNewMatchCreated() throws Exception {
-        final StartMatchRequest request = new StartMatchRequest(Player.builder().address("http://localhost:"+wireMockServer.port()).build(), 56);
+        final StartMatchRequest request = new StartMatchRequest(Player.builder().address("http://localhost:" + wireMockServer.port()).build(), 56);
         final Match match = buildMatch(56);
 
         mvc.perform(post(START_API_PATH)
@@ -124,7 +124,7 @@ public class MatchControllerIntegrationTest {
 
     private Match buildMatch(final Integer value) {
         final Move move = Move.builder().owner(selfPlayer).value(value).build();
-        final Player player = Player.builder().address("http://localhost:"+wireMockServer.port()).build();
+        final Player player = Player.builder().address("http://localhost:" + wireMockServer.port()).build();
         return Match.builder().id(randomUUID().toString()).challenger(selfPlayer).opponent(player).move(move).build();
     }
 }

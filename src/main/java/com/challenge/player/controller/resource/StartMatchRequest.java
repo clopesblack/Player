@@ -9,7 +9,7 @@ public class StartMatchRequest {
     private Player opponent;
     private Integer value;
 
-    public StartMatchRequest(Player opponent, Integer value) {
+    public StartMatchRequest(final Player opponent, final Integer value) {
         this.opponent = opponent;
         this.value = value;
     }

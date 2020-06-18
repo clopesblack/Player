@@ -2,7 +2,7 @@ package com.challenge.player.service;
 
 import com.challenge.player.model.Match;
 import com.challenge.player.model.Player;
-import com.challenge.player.service.client.MatchClient;
+import com.challenge.player.service.client.OpponentClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class GameHelper {
 
     private final Player selfPlayer;
-    private final MatchClient client;
+    private final OpponentClient opponentClient;
 
     public Match gameLoop(final Match match) {
         if (match.isGameEnded()) {
@@ -38,6 +38,6 @@ public class GameHelper {
     }
 
     private Match askOpponentNextMove(final Match match) {
-        return client.playNewMatch(match);
+        return opponentClient.playNewMatch(match);
     }
 }
