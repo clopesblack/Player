@@ -27,11 +27,11 @@ If you prefer you can try APIs importing the following Postman collection by her
 - After the applications are running choose one to become "Player 1", which will start the game by consuming the API "/match/start".
 - The endpoint "/match/start" will return a Match that was created for both players can play.
 - The match will continue without making the user wait for the response, so the "match" its asynchronous.
-- The idea it is to follow the match on the console. There will have the ID of the players, the match information, and the values from the moves made by the players. 
+- The idea is to follow the match on the console. There will have the ID of the players, the match information, and the values from the moves made by the players. 
 - And once hits value 1, will display the winner on the console of the Player that initiated the match.
 - It is possible to play more than one match, but cannot pass the limit defined in the ExecutorService.
 
-See an example of how the match it is displayed on the console:
+See an example of how the match is displayed on the console:
 
 ![alt text](player-match-console.png)
 
